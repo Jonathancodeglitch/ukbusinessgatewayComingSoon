@@ -50,7 +50,17 @@ export default function ComingSoonPage() {
         return;
       }
 
-      console.log('[v0] Form submitted:', { name: formState.name, email: formState.email });
+     const res = await fetch('/api/kit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: formState.name, email: formState.email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
 
       setFormState(prev => ({
         ...prev,
