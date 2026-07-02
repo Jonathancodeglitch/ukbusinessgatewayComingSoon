@@ -8,6 +8,7 @@ export async function POST(req: NextRequest) {
   try {
     const { fullName, email } = await req.json();
 
+    console.log(fullName)
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
@@ -20,7 +21,7 @@ export async function POST(req: NextRequest) {
         "X-Kit-Api-Key": KIT_API_KEY,
       },
       body: JSON.stringify({
-        full_name: fullName || undefined,
+        first_name: fullName, //fullname as first name
         email_address: email,
         state: "active",
       }),
@@ -36,9 +37,8 @@ export async function POST(req: NextRequest) {
 
     const subData = await subRes.json();
     const subscriberId = subData.subscriber.id;
-
-    
-
+  
+     
     // Step 2: Apply tag
     const tagRes = await fetch(
       `https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers/${subscriberId}`,

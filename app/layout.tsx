@@ -11,7 +11,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'UK Business Gateway | Start Your UK Company in 24 Hours',
   description: 'Register your UK company quickly, securely, and correctly with solicitor-led support. Start your business today with UK Business Gateway.',
-  
 }
 
 export default function RootLayout({
