@@ -37,10 +37,9 @@ export async function POST(req: NextRequest) {
     const subData = await subRes.json();
     const subscriberId = subData.subscriber.id;
 
-    console.log(subData);
+    
 
     // Step 2: Apply tag
-    console.log(process.env.KIT_TAG_ID);
     const tagRes = await fetch(
       `https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers/${subscriberId}`,
       {
